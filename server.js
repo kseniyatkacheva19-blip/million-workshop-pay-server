@@ -97,6 +97,7 @@ const server = http.createServer(async (req, res) => {
       Amount: WORKSHOP_AMOUNT_KOPECKS,
       OrderId: orderId,
       Description: WORKSHOP_DESCRIPTION,
+      SuccessURL: "https://t.me/+tMZGODrBQLE4OWJi",
     };
 
     const token = buildToken(initParams, process.env.TBANK_PASSWORD);
