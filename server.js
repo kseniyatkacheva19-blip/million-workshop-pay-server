@@ -6,7 +6,7 @@ const path = require("path");
 
 const ALLOWED_ORIGIN = "https://workshop.neurocreator.site";
 const TERMINAL_KEY = "1788278749846";
-const WORKSHOP_AMOUNT_KOPECKS = 149000; // 1490 rubles
+const WORKSHOP_AMOUNT_KOPECKS = 1000; // 10 rubles
 const WORKSHOP_DESCRIPTION = "Участие в воркшопе «Нейрокреатор на миллион»";
 const PORT = process.env.PORT || 3000;
 
