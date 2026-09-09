@@ -78,6 +78,18 @@ const server = http.createServer(async (req, res) => {
   }
 
   try {
+    let rawBody = "";
+    for await (const chunk of req) rawBody += chunk;
+    let payload = {};
+    try { payload = rawBody ? JSON.parse(rawBody) : {}; } catch (e) { payload = {}; }
+
+    const email = typeof payload.email === "string" ? payload.email.trim() : "";
+    if (!email) {
+      res.writeHead(400, { "Content-Type": "application/json", ...cors });
+      res.end(JSON.stringify({ Success: false, Message: "Email обязателен" }));
+      return;
+    }
+
     const orderId = "ws-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8);
 
     const initParams = {
@@ -90,6 +102,7 @@ const server = http.createServer(async (req, res) => {
     const token = buildToken(initParams, process.env.TBANK_PASSWORD);
 
     const receipt = {
+      Email: email,
       Taxation: "usn_income",
       Items: [
         {
